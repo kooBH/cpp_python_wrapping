@@ -1,16 +1,20 @@
 
-cdef extern from "Rectangle.h" namespace "shapes":
-    cdef cppclass Rectangle:
-        Rectangle(int, int, int, int)
+cdef extern from "A.h":
+    cdef cppclass A:
+        A(int, int, int, int)
         int x0, y0, x1, y1
         int getLength()
         int getHeight()
         int getArea()
         void move(int, int)
-cdef class PyRectangle:
-    cdef Rectangle *thisptr      # hold a C++ instance which we're wrapping
+        void init()
+        void dele()
+        void inc()
+        void dec();
+cdef class PyA:
+    cdef A *thisptr      # hold a C++ instance which we're wrapping
     def __cinit__(self, int x0, int y0, int x1, int y1):
-        self.thisptr = new Rectangle(x0, y0, x1, y1)
+        self.thisptr = new A(x0, y0, x1, y1)
     def __dealloc__(self):
         del self.thisptr
     def getLength(self):
@@ -21,3 +25,12 @@ cdef class PyRectangle:
         return self.thisptr.getArea()
     def move(self, dx, dy):
         self.thisptr.move(dx, dy)
+    def init(self):
+        self.thisptr.init()
+    def dele(self):
+        self.thisptr.dele()
+    def inc(self):
+        self.thisptr.inc()
+    def dec(self):
+        self.thisptr.dec()
+    
