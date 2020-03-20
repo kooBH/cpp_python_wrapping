@@ -35,7 +35,41 @@ void A::move(int dx, int dy)
   y1 += dy;
 }
 
-void A::init(){}
-void A::dele(){}
-void A::inc(){}
-void A::dec(){}
+void A::init(){
+  data = new double*[2];
+  data[0] = new double[2];
+  data[1] = new double[2];
+
+  data[0][0]=0.0;
+  data[0][1]=0.0;
+  data[1][0]=0.0;
+  data[1][1]=0.0;
+}
+void A::dele(){
+  delete[] data[0];
+  delete[] data[1];
+  delete[] data;
+}
+void A::inc(){
+  for(int i=0;i<2;i++){
+    for(int j=0;j<2;j++){
+      data[i][j] = data[i][j]+1;
+    }
+  }
+}
+void A::dec(){
+  for(int i=0;i<2;i++){
+    for(int j=0;j<2;j++){
+      data[i][j] = data[i][j]-1;
+    }
+  }
+}
+double A::get(){
+  double sum = 0.0;
+  for(int i=0;i<2;i++){
+    for(int j=0;j<2;j++){
+      sum +=data[i][j];
+    }
+  }
+  return sum;
+}

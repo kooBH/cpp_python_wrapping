@@ -2,6 +2,7 @@
 cdef extern from "A.h":
     cdef cppclass A:
         A(int, int, int, int)
+        double ** data
         int x0, y0, x1, y1
         int getLength()
         int getHeight()
@@ -10,7 +11,8 @@ cdef extern from "A.h":
         void init()
         void dele()
         void inc()
-        void dec();
+        void dec()
+        double get()
 cdef class PyA:
     cdef A *thisptr      # hold a C++ instance which we're wrapping
     def __cinit__(self, int x0, int y0, int x1, int y1):
@@ -33,4 +35,6 @@ cdef class PyA:
         self.thisptr.inc()
     def dec(self):
         self.thisptr.dec()
+    def get(self):
+        return self.thisptr.get()
     

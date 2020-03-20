@@ -1,5 +1,6 @@
 class A{
     private :
+      double **data;
     public:
       int x0, y0, x1, y1;
       A(int x0, int y0, int x1, int y1);
@@ -12,5 +13,5 @@ class A{
       void dele();
       void inc();
       void dec();
-      void get();
+      double get();
 };
