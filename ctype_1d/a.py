@@ -13,18 +13,29 @@ class A(object):
         lib.A_Set.argtypes = [ctypes.c_void_p,ndpointer(ctypes.c_double,flags="C_CONTIGUOUS") ] 
         lib.A_Set.restype = ctypes.c_void_p
 
+        lib.A_Op.argtypes = [ctypes.c_void_p]
+        lib.A_Op.restype = ctypes.c_void_p
+
+        lib.A_Get.argtypes = [ctypes.c_void_p,ndpointer(ctypes.c_double,flags="C_CONTIGUOUS") ] 
+        lib.A_Get.restype = ctypes.c_void_p
+
         lib.A_Print.argtypes = [ctypes.c_void_p]
         lib.A_Print.restype = ctypes.c_void_p
 
         self.obj = lib.A_new(val)
 
     def Set(self,val):
-        print(type(val))
-        print(val)
         lib.A_Set(self.obj,val)
-        #lib.A_Set(val)
+    
+    def Op(self):
+        lib.A_Op(self.obj)
+
+    def Get(self,val):
+        lib.A_Get(self.obj,val)
    
     def Print(self):
         lib.A_Print(self.obj)
+
+    
 
 
