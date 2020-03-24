@@ -52,10 +52,18 @@ void A::Print(){
 }
 
 extern "C"{
-    A* A_new(int n) {return new A(n);}
-    void A_Set(A* foo,double ** d) {foo->Set(d);}
-    void A_Op(A* foo){foo->Op();}
-    void A_Get(A* foo,double ** d) {foo->Get(d);}
-    void A_Print(A* foo) {foo->Print();}
+#if _WIN32
+    __declspec(dllexport) A* A_new(int n) {return new A(n);}
+    __declspec(dllexport) void A_Set(A* foo,double ** d) {foo->Set(d);}
+    __declspec(dllexport) void A_Op(A* foo){foo->Op();}
+    __declspec(dllexport) void A_Get(A* foo,double ** d) {foo->Get(d);}
+    __declspec(dllexport) void A_Print(A* foo) {foo->Print();}
+#else
+  A* A_new(int n) { return new A(n); }
+  void A_Set(A* foo, double** d) { foo->Set(d); }
+  void A_Op(A* foo) { foo->Op(); }
+  void A_Get(A* foo, double** d) { foo->Get(d); }
+  void A_Print(A* foo) { foo->Print(); }
+#endif
 }
 

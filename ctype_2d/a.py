@@ -3,8 +3,9 @@ from numpy.ctypeslib import ndpointer
 import numpy as np
 
 
-lib = ctypes.cdll.LoadLibrary('./build/libfoo.so')
-
+#lib = ctypes.cdll.LoadLibrary('./build/libfoo.so')
+lib = ctypes.cdll.LoadLibrary('./build/Release/foo.dll')
+print(dir(lib))
 _doublepp = ndpointer(dtype=np.uintp, ndim=1, flags='C')
 
 class A(object):
