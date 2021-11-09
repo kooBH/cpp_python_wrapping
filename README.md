@@ -1,7 +1,7 @@
 # cpp_python_wrapping
 
 ## NOTE
-대상 파일을 ```.cpp``` 로 해야한다. 
+must set primary source in  ```.cpp``` 
 
 ---
 
