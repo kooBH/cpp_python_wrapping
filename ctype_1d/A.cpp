@@ -1,9 +1,12 @@
 #include <stdio.h>
 
+#include "B.h"
+
 class A{
   private:
     int n;
     double * data;
+    B b;
   public:
     A(int);
     void Set(double*);
@@ -41,6 +44,7 @@ void A::Get(double*d){
 void A::Print(){
   for(int i=0;i<n;i++)
     printf("[%d] : %lf\n",i,data[i]);
+  printf("B : %d\n",b.val());
 
 }
 
